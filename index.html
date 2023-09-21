@@ -35,6 +35,12 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map);
+
  navigator.geolocation.watchPosition(sucess,error);
 
  let marker,circle,zoomed;
@@ -43,8 +49,8 @@
     const lat=pos.coords.latitude;
     const lng=pos.coords.longitude;
     const accuracy=pos.coords.accuracy;
-      latitude.innerHTML=lat;
-      longitude.innerHTML=lng;
+      latitude.innerHTML=`Latitude is: ${lat}`;
+      longitude.innerHTML=`Longitude is: ${lng}`;
 
     if(marker){
         map.removeLayer(marker);
